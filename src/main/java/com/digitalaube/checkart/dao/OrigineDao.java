@@ -1,0 +1,12 @@
+package com.digitalaube.checkart.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.digitalaube.checkart.bean.Origine;
+
+@Repository
+public interface OrigineDao extends JpaRepository<Origine, Long> {
+	
+	Origine findByRegion(String region);
+}
