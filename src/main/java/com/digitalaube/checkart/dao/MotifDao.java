@@ -7,5 +7,5 @@ import com.digitalaube.checkart.bean.Motif;
 
 @Repository
 public interface MotifDao extends JpaRepository<Motif, Long>{
-	Motif findBySigne(String signe);
+	Motif findBySymbole(String symbole);
 }

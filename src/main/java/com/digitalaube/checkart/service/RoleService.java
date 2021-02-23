@@ -2,10 +2,10 @@ package com.digitalaube.checkart.service;
 
 import java.util.List;
 
-import com.digitalaube.checkart.bean.Role;
+import com.digitalaube.checkart.bean.Rolev;
 
 public interface RoleService  {
-	public void save(Role role);
-	public List<Role> findAll();
-	public Role findByLibelle( String libelle);
+	public void save(Rolev role);
+	public List<Rolev> findAll();
+	public Rolev findByLibelle( String libelle);
 }

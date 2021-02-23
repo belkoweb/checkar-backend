@@ -16,8 +16,8 @@ public class TapisServiceImpl implements TapisService {
 		private TapisDao tapisDao;
 		
 		@Override
-		public void save(Tapis tapis) {
-			tapisDao.save(tapis);
+		public Tapis save(Tapis tapis) {
+			return tapisDao.save(tapis);
 		}
 		
 		@Override
@@ -27,5 +27,18 @@ public class TapisServiceImpl implements TapisService {
 		@Override
 		public Tapis findByNom(String nom) {
 			return tapisDao.findByNom(nom);
+		}
+
+		@Override
+		public Tapis update(Long id, Tapis tapis) {
+			
+				return tapisDao.save(tapis);
+
+		}
+
+		@Override
+		public void delete(Long id) {
+			
+			tapisDao.deleteById(id);
 		}
 }

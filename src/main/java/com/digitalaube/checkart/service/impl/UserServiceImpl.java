@@ -1,8 +1,10 @@
 package com.digitalaube.checkart.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.digitalaube.checkart.bean.User;
@@ -11,13 +13,14 @@ import com.digitalaube.checkart.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService{
-
+	 @Autowired
+	    private PasswordEncoder passwordEncoder;
 	@Autowired
 	private UserDao userDao;
 	@Override
-	public void save(User user) {
-		// TODO Auto-generated method stub
-		userDao.save(user);
+	public User save(User user) {
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		return userDao.save(user);
 	}
 
 	@Override
@@ -40,8 +43,18 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User findByEmail(String email) {
+		return userDao.findByEmail(email).orElse(null);	}
+
+	@Override
+	public void delete(Long id) {
+		userDao.deleteById(id);
+		
+	}
+
+	@Override
+	public User update(Long id, User user) {
 		// TODO Auto-generated method stub
-		return userDao.findByEmail(email);
+		return userDao.save(user);
 	}
 	
 }

@@ -14,12 +14,12 @@ public class UserRole {
 	@ManyToOne
 	private User user;
 	@ManyToOne
-	private Role role;
+	private Rolev role;
 	public UserRole() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public UserRole(Long id, User user, Role role) {
+	public UserRole(Long id, User user, Rolev role) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -37,10 +37,10 @@ public class UserRole {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public Role getRole() {
+	public Rolev getRole() {
 		return role;
 	}
-	public void setRole(Role role) {
+	public void setRole(Rolev role) {
 		this.role = role;
 	}
 	

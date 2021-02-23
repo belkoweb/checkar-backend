@@ -6,18 +6,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 @Entity
 public class TapisOrigine {
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	@ManyToOne
+	@JsonProperty(access = Access.WRITE_ONLY)	
 	private Tapis tapis;
 	@ManyToOne
 	private Origine origine;
-	public TapisOrigine(Long id, Tapis tapis, Origine origine) {
+	public TapisOrigine( Tapis tapis, Origine origine) {
 		super();
-		this.id = id;
 		this.tapis = tapis;
 		this.origine = origine;
 	}

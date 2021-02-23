@@ -10,12 +10,12 @@ public class Motif {
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	private String signe;
+	private String symbole;
 	private String signification;
 	public Motif(Long id, String signe, String signification) {
 		super();
 		this.id = id;
-		this.signe = signe;
+		this.symbole = signe;
 		this.signification = signification;
 	}
 	public Motif() {
@@ -28,17 +28,18 @@ public class Motif {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getSigne() {
-		return signe;
-	}
-	public void setSigne(String signe) {
-		this.signe = signe;
-	}
+
 	public String getSignification() {
 		return signification;
 	}
 	public void setSignification(String signification) {
 		this.signification = signification;
+	}
+	public String getSymbole() {
+		return symbole;
+	}
+	public void setSymbole(String symbole) {
+		this.symbole = symbole;
 	}
 	
 	

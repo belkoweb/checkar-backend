@@ -14,8 +14,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.pro.jwt.JWTAuthorizationFilter;
-import com.pro.jwt.JwtTokenProvider;
+import com.digitalaube.checkart.jwt.JWTAuthorizationFilter;
+import com.digitalaube.checkart.jwt.JwtTokenProvider;
+
 
 @Configuration
 @EnableWebSecurity
@@ -38,7 +39,7 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
         http.cors().and()
                 .authorizeRequests()
                 //These are public paths
-                .antMatchers("/resources/**",  "/error", "/api/user/**", "/mediatek-api/audit_stock/", "/mediatek-api/chiffre/", "/mediatek-api/produit/demande/**").permitAll()
+                .antMatchers("/resources/**",  "/error", "/api/user/**", "/checkart-api/origine/", "/checkart-api/motif/", "/checkart-api/**").permitAll()
                 //These can be reachable for just have admin role.
                 .antMatchers("/api/admin/**").hasRole("ADMIN")
                 //All remaining paths should need authentication.

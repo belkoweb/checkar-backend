@@ -13,8 +13,8 @@ public class MotifServiceImpl implements MotifService {
 	private MotifDao motifDao;
 	
 	@Override
-	public void save(Motif motif) {
-		motifDao.save(motif);
+	public Motif save(Motif motif) {
+		return motifDao.save(motif);
 	}
 	
 	@Override
@@ -23,7 +23,19 @@ public class MotifServiceImpl implements MotifService {
 	}
 	
 	@Override
-	public Motif findBySigne(String signe) {
-		return motifDao.findBySigne(signe);
+	public Motif findBySymbole(String signe) {
+		return motifDao.findBySymbole(signe);
+	}
+
+	@Override
+	public void delete(Long id) {
+		motifDao.deleteById(id);
+		
+	}
+
+	@Override
+	public Motif update(Long id, Motif motif) {
+		// TODO Auto-generated method stub
+		return motifDao.save(motif);
 	}
 }

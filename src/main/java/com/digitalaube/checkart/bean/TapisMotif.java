@@ -6,12 +6,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 @Entity
 public class TapisMotif {
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	@ManyToOne
+	@JsonProperty(access = Access.WRITE_ONLY)	
 	private Tapis tapis;
 	@ManyToOne
 	private Motif motif;
@@ -37,9 +41,8 @@ public class TapisMotif {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public TapisMotif(Long id, Tapis tapis, Motif motif) {
+	public TapisMotif( Tapis tapis, Motif motif) {
 		super();
-		this.id = id;
 		this.tapis = tapis;
 		this.motif = motif;
 	}

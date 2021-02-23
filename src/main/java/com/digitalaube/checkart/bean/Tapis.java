@@ -1,10 +1,15 @@
+
 package com.digitalaube.checkart.bean;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -16,6 +21,10 @@ public class Tapis {
 	private String description;
 	private float taille;
 	private String couleur;
+	@OneToMany(mappedBy = "tapis")
+	private List<TapisOrigine> tapis_origines;
+	@OneToMany(mappedBy = "tapis")
+	private List<TapisMotif> tapis_motifs;
 	private int w1;
 	private int w2;
 	private int w3;
@@ -26,6 +35,14 @@ public class Tapis {
 	public Tapis() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	
+	public Tapis( String nom, String description, float taille, String couleur) {
+		super();
+		this.nom = nom;
+		this.description = description;
+		this.taille = taille;
+		this.couleur = couleur;
 	}
 	public Tapis(Long id, String nom, String description, float taille, String couleur, int w1, int w2, int w3,
 			byte[] photo, String uri) {
@@ -101,8 +118,7 @@ public class Tapis {
 	public void setUri(String uri) {
 		this.uri = uri;
 	}
-	
-	
+
 	
 	
 	

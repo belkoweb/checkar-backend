@@ -16,8 +16,8 @@ public class OrigineServiceImpl implements OrigineService  {
 	private OrigineDao origineDao;
 
 	@Override
-	public void save(Origine origine) {
-		origineDao.save(origine);
+	public Origine save(Origine origine) {
+		return origineDao.save(origine);
 		
 	}
 
@@ -30,6 +30,31 @@ public class OrigineServiceImpl implements OrigineService  {
 	public Origine findByRegion(String region) {
 		
 		return origineDao.findByRegion(region);
+	}
+
+	@Override
+	public Origine findByNom(String nom) {
+		// TODO Auto-generated method stub
+		return origineDao.findByRegion(nom);
+	}
+
+	@Override
+	public Origine findById(Long id) {
+		// TODO Auto-generated method stub
+		return origineDao.findById(id).orElse(null);
+	}
+
+	@Override
+	public void delete(Long id) {
+		// TODO Auto-generated method stub
+		origineDao.deleteById(id);
+		
+	}
+
+	@Override
+	public Origine update(Long id, Origine origine) {
+		// TODO Auto-generated method stub
+		return origineDao.save(origine);
 	}
 
 }

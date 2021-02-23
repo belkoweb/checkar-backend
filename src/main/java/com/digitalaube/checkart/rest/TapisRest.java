@@ -34,7 +34,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 @RestController
-@RequestMapping("checkart/tapis")
+@RequestMapping("checkart-api/tapis")
 public class TapisRest {
 	@Value("${upoadDir}")
 	private String uploadFolder;
@@ -55,7 +55,7 @@ public class TapisRest {
 	public String addProductPage() {
 		return "index";
 	}
-	
+/*	
 	@PostMapping("/tapis/savetapis")
 	public @ResponseBody ResponseEntity<?> createTapis(@RequestParam("non") String nom,
 			@RequestParam("description") String description,@RequestParam("couleur") String couleur, @RequestParam("taille") float taille, Model model, HttpServletRequest request
@@ -122,5 +122,5 @@ public class TapisRest {
 			log.info("Exception: " + e);
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-	}
+	}*/
 }
