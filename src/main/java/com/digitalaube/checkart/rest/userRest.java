@@ -9,6 +9,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.digitalaube.checkart.bean.Role;
@@ -18,6 +19,7 @@ import com.digitalaube.checkart.jwt.JwtTokenProvider;
 import com.digitalaube.checkart.service.UserService;
 
 @RestController
+@RequestMapping("/checkart/")
 public class userRest {
 	@Autowired
 	private UserService userService;
