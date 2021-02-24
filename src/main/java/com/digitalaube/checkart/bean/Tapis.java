@@ -14,6 +14,21 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Tapis {
+	public List<TapisOrigine> getTapis_origines() {
+		return tapis_origines;
+	}
+
+	public void setTapis_origines(List<TapisOrigine> tapis_origines) {
+		this.tapis_origines = tapis_origines;
+	}
+
+	public List<TapisMotif> getTapis_motifs() {
+		return tapis_motifs;
+	}
+
+	public void setTapis_motifs(List<TapisMotif> tapis_motifs) {
+		this.tapis_motifs = tapis_motifs;
+	}
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;

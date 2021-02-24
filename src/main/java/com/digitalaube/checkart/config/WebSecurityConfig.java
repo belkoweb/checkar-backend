@@ -39,7 +39,7 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
         http.cors().and()
                 .authorizeRequests()
                 //These are public paths
-                .antMatchers("/resources/**",  "/error", "/api/user/**", "/checkart-api/origine/", "/checkart-api/motif/", "/checkart-api/**").permitAll()
+                .antMatchers("/resources/**",  "/error", "/api/user/**", "/checkart-api/origine/", "/checkart-api/motif/", "/checkart/api/**").permitAll()
                 //These can be reachable for just have admin role.
                 .antMatchers("/api/admin/**").hasRole("ADMIN")
                 //All remaining paths should need authentication.
@@ -47,10 +47,10 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
                 .and()
                 //logout will log the user out by invalidated session.
                 .logout().permitAll()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/api/user/logout", "POST"))
+                .logoutRequestMatcher(new AntPathRequestMatcher("/checkart/api/user/logout", "POST"))
                 .and()
                 //login form and path
-                .formLogin().loginPage("/api/user/login").and()
+                .formLogin().loginPage("/checkart/api/user/login").and()
                 //enable basic authentication
                 .httpBasic().and()
                 //We will handle it later.

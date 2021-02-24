@@ -14,8 +14,8 @@ public class TapisMotif {
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	@ManyToOne
 	@JsonProperty(access = Access.WRITE_ONLY)	
+	@ManyToOne
 	private Tapis tapis;
 	@ManyToOne
 	private Motif motif;

@@ -19,14 +19,14 @@ import com.digitalaube.checkart.jwt.JwtTokenProvider;
 import com.digitalaube.checkart.service.UserService;
 
 @RestController
-@RequestMapping("/checkart/")
+@RequestMapping("/checkart/api/user")
 public class userRest {
 	@Autowired
 	private UserService userService;
 	@Autowired
 	private JwtTokenProvider tokenProvider;
 
-@PostMapping("/api/user/registration")
+@PostMapping("/registration")
 public ResponseEntity<?> register(@RequestBody User user){
     if(userService.findByEmail(user.getEmail())!=null){
         return new ResponseEntity<>(HttpStatus.CONFLICT);
@@ -35,7 +35,7 @@ public ResponseEntity<?> register(@RequestBody User user){
     return new ResponseEntity<>(userService.save(user), HttpStatus.CREATED);
 }
 
-@GetMapping("/api/user/login")
+@GetMapping("/login")
 public ResponseEntity<?> getUser(Principal principal){
      if(principal == null){
         return ResponseEntity.ok(principal);
