@@ -104,10 +104,10 @@ public class CheckArtApplication implements CommandLineRunner{
 		admin.setTel("555555555555");
 		
 		userDao.save(admin);
-		User user1 = new User("Amadou", "Soumana", "gor@gmail.com", "12345", "00000555", Role.USER);
-		User user2 = new User("AmadouY", "SoumanaY", "gory@gmail.com", "12345", "00000555", Role.USER);
+		User user1 = new User("Amadou", "Soumana", "gor@gmail.com", passwordEncoder.encode("12345"), "00000555", Role.USER);
+		User user2 = new User("AmadouY", "SoumanaY", "gory@gmail.com",passwordEncoder.encode("12345"), "00000555", Role.USER);
 
-		User user3 = new User("AmadouZ", "SoumanaZ", "gorz@gmail.com", "12345", "00000555", Role.USER);
+		User user3 = new User("AmadouZ", "SoumanaZ", "gorz@gmail.com", passwordEncoder.encode("12345"), "00000555", Role.USER);
 		
 		userDao.save(user1);
 		userDao.save(user2);
