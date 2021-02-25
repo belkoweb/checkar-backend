@@ -48,7 +48,7 @@ public class TapisRest {
 	@Autowired
 	private TapisOrigineService tapisOrigineService ;
 	
-
+///////////////////greate
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@GetMapping(value = {"/", "/home"})
