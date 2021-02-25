@@ -35,6 +35,7 @@ import com.digitalaube.checkart.service.TapisService;
 import com.digitalaube.checkart.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+@CrossOrigin
 @RestController
 @RequestMapping("/checkart/api/admin")
 public class AdminRest {
@@ -130,12 +131,19 @@ public class AdminRest {
 	    public ResponseEntity<?> findAllMotifs(){
 	        return new ResponseEntity<>(motifService.findAll(), HttpStatus.OK);
 	    }
-	    	    
+	    
+	    
+	      // String imageName = "tapis.jpg";
+	    
 	    @PostMapping("/tapis-create")
 	    public ResponseEntity<?> createTapis( @RequestBody Tapis tapis){
-	    	System.out.println(this.fileResponse.getFileName());
-			tapis.setUri(this.fileResponse.getFileName());
-			tapis.setPhoto(this.fileResponse.getPhoto());
+	    	//System.out.println(this.fileResponse.getFileName());
+	    	if( this.fileResponse.getFileName() !=null) {
+	    		tapis.setUri(this.fileResponse.getFileName());
+	         	tapis.setPhoto(this.fileResponse.getPhoto());
+	    		
+	    	}
+			
 	    	System.out.println(tapis.getNom());
 	    	System.out.println(this.fileResponse.getPhoto());
 	        return new ResponseEntity<>(tapisService.save(tapis), HttpStatus.CREATED);
@@ -171,7 +179,6 @@ public class AdminRest {
 	    
 	    
 	  
-	       
-	   
+   
 
 }
