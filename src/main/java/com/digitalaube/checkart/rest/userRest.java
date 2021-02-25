@@ -52,8 +52,8 @@ public ResponseEntity<?> getUser(Principal principal){
 
 
 @GetMapping("/signin/{email}/{password}")
-public User findByEmailAndPassword(@PathVariable(name="email") String email, @PathVariable(name="password")String password) {
-	return userService.findByEmailAndPassword(email, password);
+public ResponseEntity<?> findByEmailAndPassword(@PathVariable(name="email") String email, @PathVariable(name="password")String password) {
+	return new ResponseEntity<>(userService.findByEmailAndPassword(email, password), HttpStatus.OK);
 }
 
 
