@@ -35,7 +35,6 @@ import com.digitalaube.checkart.service.TapisService;
 import com.digitalaube.checkart.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/checkart/api/admin")
 public class AdminRest {
@@ -131,10 +130,7 @@ public class AdminRest {
 	    public ResponseEntity<?> findAllMotifs(){
 	        return new ResponseEntity<>(motifService.findAll(), HttpStatus.OK);
 	    }
-	    
-	    
-	      // String imageName = "tapis.jpg";
-	    
+	    	    
 	    @PostMapping("/tapis-create")
 	    public ResponseEntity<?> createTapis( @RequestBody Tapis tapis){
 	    	System.out.println(this.fileResponse.getFileName());
