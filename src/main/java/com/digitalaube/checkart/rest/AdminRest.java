@@ -5,8 +5,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity.BodyBuilder;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,21 +18,34 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.digitalaube.checkart.bean.FileResponse;
+//import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import com.digitalaube.checkart.bean.Motif;
 import com.digitalaube.checkart.bean.Origine;
 import com.digitalaube.checkart.bean.Tapis;
 import com.digitalaube.checkart.bean.TapisMotif;
 import com.digitalaube.checkart.bean.TapisOrigine;
+import com.digitalaube.checkart.bean.UploadFileResponse;
 import com.digitalaube.checkart.bean.User;
 import com.digitalaube.checkart.service.FileService;
+import com.digitalaube.checkart.service.FileUploadDownloadService;
 import com.digitalaube.checkart.service.MotifService;
 import com.digitalaube.checkart.service.OrigineService;
 import com.digitalaube.checkart.service.TapisService;
 import com.digitalaube.checkart.service.UserService;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/checkart/api/admin")
 public class AdminRest {
+	 private static final Logger logger = LoggerFactory.getLogger(AdminRest.class);
+	 
+	  private  FileResponse fileResponse;
+	   private String fileName;
+	    @Autowired
+	    private FileUploadDownloadService fileUploadDownloadService;
+	 
 	 @Autowired
 	    private UserService userService;
 
@@ -46,8 +61,8 @@ public class AdminRest {
 	    FileService fileService;
 	    
 	    String subPath = "tapis";
-	    
-
+	     
+          MultipartFile  file;
 	    @PutMapping("/user-update")
 	    public ResponseEntity<?> updateUser(@RequestBody User user) {
 	        User existuser =userService.findByEmail(user.getEmail());
@@ -118,30 +133,19 @@ public class AdminRest {
 	    }
 	    
 	    
-	    
+	      // String imageName = "tapis.jpg";
 	    
 	    @PostMapping("/tapis-create")
-	    public ResponseEntity<?> createTapis( @RequestParam(value = "nom") String nom,
-				@RequestParam(value =  "description") String description, @RequestParam(value ="taille") Float taille, @RequestParam(value ="couleur") String couleur, @RequestParam(value ="tapis_origines") List<TapisOrigine> tapis_origines, @RequestParam(value ="tapis_motifs") List<TapisMotif> tapis_motifs, @RequestParam(value = "image",required = false) MultipartFile file){
-	    	String imageName = "product.jpg";
-
-			if (file != null) {
-				imageName = fileService.saveFile(file, this.subPath);
-			}
-			
-			Tapis  tapis = new Tapis();
-			tapis.setNom(nom);
-			tapis.setDescription(description);
-			tapis.setTaille(78);
-			tapis.setCouleur(couleur);
-			tapis.setTapis_origines(tapis_origines);
-			tapis.setTapis_motifs(tapis_motifs);
-			tapis.setUri(imageName);
-			
+	    public ResponseEntity<?> createTapis( @RequestBody Tapis tapis){
+	    	System.out.println(this.fileResponse.getFileName());
+			tapis.setUri(this.fileResponse.getFileName());
+			tapis.setPhoto(this.fileResponse.getPhoto());
 	    	System.out.println(tapis.getNom());
+	    	System.out.println(this.fileResponse.getPhoto());
 	        return new ResponseEntity<>(tapisService.save(tapis), HttpStatus.CREATED);
 	    }
 
+	    
 	    @PutMapping("/tapis-update")
 	    public ResponseEntity<?> updateTapis(@RequestBody Tapis tapis){
 	        return new ResponseEntity<>(tapisService.update(tapis.getId(),tapis), HttpStatus.CREATED);
@@ -158,26 +162,19 @@ public class AdminRest {
 	        return new ResponseEntity<>(tapisService.findAll(), HttpStatus.OK);
 	    }
 	    
-	/*	@PostMapping
-		public ResponseEntity create(@RequestParam(name = "image",required = false) MultipartFile file, @RequestParam("name") String name,
-				@RequestParam("description") String description, @RequestParam("price") float price) {
-
-			String imageName = "product.jpg";
-
-			if (file != null) {
-				imageName = fileService.saveFile(file, this.subPath);
-			}
-
-			//Product product = new Product();
-
-			product.setName(name);
-			product.setDescription(description);
-			product.setPrice(price);
-			product.setImage(imageName);
-
-			return ResponseEntity.ok(serviceProduct.save(product));
-		}*/
 	    
+	    
+	    @PostMapping(value = "/uploadFile", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	    public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) {
+	        fileName = fileUploadDownloadService.uploadFile(file);
+	           System.out.println(fileName);
+	         fileResponse = new FileResponse(fileName, file);
+	        return new UploadFileResponse(fileName);
+	    }
+	    
+	    
+	    
+	  
 	       
 	   
 
