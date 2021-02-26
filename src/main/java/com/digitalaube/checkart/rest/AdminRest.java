@@ -144,7 +144,7 @@ public class AdminRest {
 	    	//System.out.println(this.fileResponse.getFileName());
 	    	if( this.fileResponse.getFileName() !=null) {
 	    		tapis.setUri(this.fileResponse.getFileName());
-	         	tapis.setPhoto(this.compressBytes(this.fileResponse.getPhoto()));
+	         	tapis.setPhoto(this.fileResponse.getPhoto());
 	    		
 	    	}
 			
