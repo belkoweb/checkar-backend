@@ -137,7 +137,7 @@ public class AdminRest {
 	    }
 	    
 	    
-	      // String imageName = "tapis.jpg";
+	     String kmageName = "tapis.jpg";
 	    
 	    @PostMapping("/tapis-create")
 	    public ResponseEntity<?> createTapis( @RequestBody Tapis tapis){
