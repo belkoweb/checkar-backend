@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 @Entity
 
@@ -36,6 +37,7 @@ public class Tapiss {
 		private int w1;
 	    private int w2;
 	    private int w3;
+	    @Lob
 	    private byte[] photo;
 	    private String uri;
 		public Long getId() {
