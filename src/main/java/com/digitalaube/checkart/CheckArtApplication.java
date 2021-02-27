@@ -14,12 +14,14 @@ import com.digitalaube.checkart.bean.Role;
 import com.digitalaube.checkart.bean.Tapis;
 import com.digitalaube.checkart.bean.TapisMotif;
 import com.digitalaube.checkart.bean.TapisOrigine;
+import com.digitalaube.checkart.bean.Tapiss;
 import com.digitalaube.checkart.bean.User;
 import com.digitalaube.checkart.dao.MotifDao;
 import com.digitalaube.checkart.dao.OrigineDao;
 import com.digitalaube.checkart.dao.TapisDao;
 import com.digitalaube.checkart.dao.TapisMotifDao;
 import com.digitalaube.checkart.dao.TapisOrigineDao;
+import com.digitalaube.checkart.dao.TapissDao;
 import com.digitalaube.checkart.dao.UserDao;
 
 @SpringBootApplication
@@ -38,6 +40,9 @@ public class CheckArtApplication implements CommandLineRunner{
 	private TapisOrigineDao tapisOrigineDao;
 	 @Autowired
 	 TapisMotifDao   tapisMotifDao;
+	 
+	 @Autowired
+		private TapissDao tapissDao;
 	public static void main(String[] args) {
 		SpringApplication.run(CheckArtApplication.class, args);
 	}
@@ -95,11 +100,44 @@ public class CheckArtApplication implements CommandLineRunner{
 		});
 		
 		
+		
+		 Tapiss tapis11 = new Tapiss();
+		 tapis11.setNom("GRAND TAPIS ZANAFI");
+		 tapis11.setCouleur("Noir, gris, blanc");
+		 tapis11.setDescription(" Le tapis Zanafi se distingue par ses motifs à votre intérieur. ");
+		 tapis11.setTaille("315x185 cm");
+		 tapis11.setOrigine("Origine: Haut Atlas marocain");
+		 tapis11.setMotif("Motis: Losange, le losange représente \nla fécondité et la maternité");
+		 tapis11.setUri("azilal");
+		  tapissDao.save(tapis11);
+
+		  Tapiss tapiss2 = new Tapiss();
+		  tapiss2.setNom("GRAND TAPIS ZANAFI");
+		  tapiss2.setCouleur("Noir, gris, blanc");
+		  tapiss2.setDescription(" Le tapis Zanafi se distingue par ses motifs intérieur. ");
+		  tapiss2.setTaille("315x185 cm");
+		  tapiss2.setOrigine("Origine: Haut Atlas marocain");
+		  tapiss2.setMotif("Motis: Losange, le losange représente \nla fécondité et la maternité");
+		  tapiss2.setUri("azilal");
+		  
+		  tapissDao.save(tapiss2);
+		 
+		 Tapiss tapis33 = new Tapiss();
+	        tapis33.setNom("TAPIS BERBERE BOUJAD");
+	        tapis33.setCouleur("Noir, Blanc");
+	        tapis33.setDescription("Magnifique tapis berbère de la ville de Boujad");
+	        tapis33.setMotif("Motis: Lignes en forme de zig-zag, une ligne en forme de zig-zag");
+
+	        tapis33.setTaille("370x185 cm");
+	        tapis33.setOrigine("Origine: Boujad");
+	        tapis33.setUri("azilal");
+	        tapissDao.save(tapis33);
+		
 		User admin = new User();
 		admin.setEmail("belkoweb@gmail.com");
 		admin.setPassword(passwordEncoder.encode("12345"));
-		admin.setNom("belkoweb");
-		admin.setPrenom("zeaaaa");
+		admin.setNom("Soumana Abdou");
+		admin.setPrenom("Amadou");
 		admin.setRole(Role.ADMIN);
 		admin.setTel("555555555555");
 		

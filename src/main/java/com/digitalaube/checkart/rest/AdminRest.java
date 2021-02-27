@@ -29,6 +29,7 @@ import com.digitalaube.checkart.bean.Origine;
 import com.digitalaube.checkart.bean.Tapis;
 import com.digitalaube.checkart.bean.TapisMotif;
 import com.digitalaube.checkart.bean.TapisOrigine;
+import com.digitalaube.checkart.bean.Tapiss;
 import com.digitalaube.checkart.bean.UploadFileResponse;
 import com.digitalaube.checkart.bean.User;
 import com.digitalaube.checkart.service.FileService;
@@ -36,6 +37,7 @@ import com.digitalaube.checkart.service.FileUploadDownloadService;
 import com.digitalaube.checkart.service.MotifService;
 import com.digitalaube.checkart.service.OrigineService;
 import com.digitalaube.checkart.service.TapisService;
+import com.digitalaube.checkart.service.TapissService;
 import com.digitalaube.checkart.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,6 +63,10 @@ public class AdminRest {
 
 	    @Autowired
 	    private TapisService tapisService;
+	    
+
+	    @Autowired
+	    private TapissService tapissService;
 	    @Autowired
 	    FileService fileService;
 	    
@@ -218,6 +224,41 @@ public class AdminRest {
 	        return new UploadFileResponse(fileName);
 	    }
 	    
+	    
+	    
+	    
+	    @PostMapping("/tapiss-create")
+	    public ResponseEntity<?> createTapiss( @RequestBody Tapiss tapiss){
+	    	//System.out.println(this.fileResponse.getFileName());
+	    	if( this.fileResponse.getFileName() !=null) {
+	    		tapiss.setUri(this.fileResponse.getFileName());
+	         	tapiss.setPhoto(this.compressBytes(this.fileResponse.getPhoto()));
+	    		
+	    	}
+			
+	    	System.out.println(tapiss.getNom());
+	    	System.out.println(this.fileResponse.getPhoto());
+	        return new ResponseEntity<>(tapissService.save(tapiss), HttpStatus.CREATED);
+	    }
+	    
+	    @PutMapping("/tapiss-update")
+	    public ResponseEntity<?> updateTapis(@RequestBody Tapiss tapiss){
+	        return new ResponseEntity<>(tapissService.update(tapiss.getId(),tapiss), HttpStatus.CREATED);
+	    }
+
+	    @PostMapping("/tapiss-delete")
+	    public ResponseEntity<?> deleteTapiss(@RequestBody Tapiss tapiss){
+	    	tapisService.delete(tapiss.getId());
+	        return new ResponseEntity<>(HttpStatus.OK);
+	    }
+
+	    @GetMapping("/tapiss-all")
+	    public ResponseEntity<?> findAllTapsis(){
+	        return new ResponseEntity<>(tapissService.findAll(), HttpStatus.OK);
+	    }
+	    
+	    
+
 	    
 	    
 	  
