@@ -232,7 +232,7 @@ public class AdminRest {
 	    	//System.out.println(this.fileResponse.getFileName());
 	    	if( this.fileResponse.getFileName() !=null) {
 	    		tapiss.setUri(this.fileResponse.getFileName());
-	         	tapiss.setPhoto(this.compressBytes(this.fileResponse.getPhoto()));
+	         	tapiss.setPhoto(this.fileResponse.getPhoto());
 	    		
 	    	}
 			

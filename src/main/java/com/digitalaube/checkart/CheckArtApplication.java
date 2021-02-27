@@ -107,7 +107,7 @@ public class CheckArtApplication implements CommandLineRunner{
 		 tapis11.setDescription(" Le tapis Zanafi se distingue par ses motifs à votre intérieur. ");
 		 tapis11.setTaille("315x185 cm");
 		 tapis11.setOrigine("Origine: Haut Atlas marocain");
-		 tapis11.setMotif("Motis: Losange, le losange représente \nla fécondité et la maternité");
+		 tapis11.setMotif("Motis: Losange, le losange représente la fécondité et la maternité");
 		 tapis11.setUri("azilal");
 		  tapissDao.save(tapis11);
 
@@ -117,7 +117,7 @@ public class CheckArtApplication implements CommandLineRunner{
 		  tapiss2.setDescription(" Le tapis Zanafi se distingue par ses motifs intérieur. ");
 		  tapiss2.setTaille("315x185 cm");
 		  tapiss2.setOrigine("Origine: Haut Atlas marocain");
-		  tapiss2.setMotif("Motis: Losange, le losange représente \nla fécondité et la maternité");
+		  tapiss2.setMotif("Motis: Losange, le losange représente la fécondité et la maternité");
 		  tapiss2.setUri("azilal");
 		  
 		  tapissDao.save(tapiss2);
