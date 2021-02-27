@@ -143,14 +143,14 @@ public class AdminRest {
 	    }
 	    
 	    
-	      // String imageName = "tapis.jpg";
+	     String kmageName = "tapis.jpg";
 	    
 	    @PostMapping("/tapis-create")
 	    public ResponseEntity<?> createTapis( @RequestBody Tapis tapis){
 	    	//System.out.println(this.fileResponse.getFileName());
 	    	if( this.fileResponse.getFileName() !=null) {
 	    		tapis.setUri(this.fileResponse.getFileName());
-	         	tapis.setPhoto(this.compressBytes(this.fileResponse.getPhoto()));
+	         	tapis.setPhoto(this.fileResponse.getPhoto());
 	    		
 	    	}
 			
